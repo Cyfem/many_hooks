@@ -1,0 +1,12 @@
+{
+  "name": "manyhooks",
+  "version": "1.0.0",
+  "description": "hooks tool library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cyfem",
+  "license": "MIT"
+  
+}

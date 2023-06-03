@@ -1,0 +1,17 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+      "baseUrl": "./",
+      "outDir": "./dist/out-tsc",
+      "importHelpers": true,
+      "target": "es2015",
+      "module": "es2020",
+      "lib": [
+        "es2018",
+        "dom"
+      ],
+			"paths": {
+				"@/*": ["./src/*"]
+			}
+    },
+  }

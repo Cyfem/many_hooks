@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
 
 const globalName: string = '__globalState__';
 const globalSubscriberName: string = '__globalStateSubscriber__';
@@ -18,7 +18,6 @@ window[globalSubscriberName] = {};
 /**
  * @param initialValue a initial value when global state be created
  * @param name for debug, you can view it throw window[globalName][name]
- * 
  */
 export const createGlobalState = <T>(initialValue: T, name: string | number | symbol = Symbol()): (elementName?: string | number | symbol) => [T, Dispatch<T>] => {
     window[globalName][name] = initialValue;
@@ -28,6 +27,12 @@ export const createGlobalState = <T>(initialValue: T, name: string | number | sy
 
         const [state, setState] = useState(window[globalName][name]);
         
+        useEffect(() => {
+            return () => {
+                delete window[globalSubscriberName][name][elementName]
+            }
+        }, [])
+
         window[globalSubscriberName][name][elementName] = setState;
         
         return [window[globalName][name], (value: T) => {
